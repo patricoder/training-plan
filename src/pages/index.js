@@ -1,3 +1,3 @@
-import MainSection from "../components/MainSection";
+import WelcomePage from "../components/WelcomePage";
 
-export { MainSection };
+export { WelcomePage };
