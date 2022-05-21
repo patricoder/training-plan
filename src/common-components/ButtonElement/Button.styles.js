@@ -6,7 +6,6 @@ const Btn = styled.button(
     padding: 1rem 0;
     border: none;
     border: 1px solid transparent;
-    margin-bottom: 1.5rem;
     border-radius: ${theme.radiusValue.radius};
     color: ${abc ? theme.colors.mainColor : theme.colors.white};
     background-color: ${abc ? theme.colors.white : 'transparent'};

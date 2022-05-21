@@ -46,12 +46,16 @@ const ButtonsContainer = styled(FlexContainer)`
   width: 100%;
   flex-direction: column;
   margin: 5rem 0;
-  button {
-    &:last-child {
-      margin-bottom: 0;
+  .nav-link {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    button {
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
-`
+`;
 
 
 

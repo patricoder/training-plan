@@ -9,6 +9,7 @@ import {
 import { Button } from "../common-components";
 import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router-dom";
 
 
 
@@ -23,8 +24,12 @@ const WelcomePage = () => {
         <SubTitle>First step</SubTitle>
         <SubTitle>To make your body healthier</SubTitle>
         <ButtonsContainer>
-          <Button title="Login" btnStyle="primary"/>
-          <Button title="Register" />
+          <NavLink to="/login" className="nav-link">
+            <Button title="Login" btnStyle="primary" />
+          </NavLink>
+          <NavLink to="/register" className="nav-link">
+            <Button title="Register" />
+          </NavLink>
         </ButtonsContainer>
       </Container>
     </Section>
