@@ -1,7 +1,10 @@
 const colors = {
   mainColor: "rgba(89, 131, 252, 1)",
-  mainGradient: "linear-gradient(180deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 50%)",
+  mainGradient:
+    "linear-gradient(180deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 50%)",
+  secondaryGradient: "linear-gradient(to right, #30CFD0 0%, #330867 100%)",
   white: "#fff",
+  gray: "#A9A9A9",
 };
 
 const radiusValue = {

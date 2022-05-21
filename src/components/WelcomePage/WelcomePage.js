@@ -5,8 +5,8 @@ import {
   LogoContainer,
   SubTitle,
   ButtonsContainer,
-} from "./MainSection.styles";
-import { Button } from "../common-components";
+} from "./WelcomePage.styles";
+import { Button } from "../../common-components";
 import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { NavLink } from "react-router-dom";

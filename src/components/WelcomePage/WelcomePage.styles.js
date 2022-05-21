@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import SectionContainer from '../styles/StyledElements/SectionContainer'
-import SectionTitle from "../styles/StyledElements/Title";
-import FlexContainer from "../styles/StyledElements/FlexContainer";
+import SectionContainer from '../../styles/StyledElements/SectionContainer'
+import SectionTitle from "../../styles/StyledElements/Title";
+import FlexContainer from "../../styles/StyledElements/FlexContainer";
 
 const Section = styled.div`
   width: 100%;
