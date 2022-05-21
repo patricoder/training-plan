@@ -1,3 +1,5 @@
+<a href="https://patricoder.github.io/training-plan">Click to see demo</a>
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
