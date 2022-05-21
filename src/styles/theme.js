@@ -1,7 +1,7 @@
 const colors = {
-  mainColor: "#63a4ff;",
-  mainGradient: ' linear-gradient(315deg, #63a4ff 0%, #83eaf1 74%)',
-  white: '#fff',
+  mainColor: "rgba(89, 131, 252, 1)",
+  mainGradient: "linear-gradient(180deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 50%)",
+  white: "#fff",
 };
 
 const radiusValue = {

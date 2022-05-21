@@ -6,6 +6,7 @@ import {
   SubTitle,
   ButtonsContainer,
 } from "./MainSection.styles";
+import { Button } from "../common-components";
 import { faDumbbell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -22,7 +23,8 @@ const WelcomePage = () => {
         <SubTitle>First step</SubTitle>
         <SubTitle>To make your body healthier</SubTitle>
         <ButtonsContainer>
-        
+          <Button title="Login" btnStyle="primary"/>
+          <Button title="Register" />
         </ButtonsContainer>
       </Container>
     </Section>

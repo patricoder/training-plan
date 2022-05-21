@@ -21,17 +21,17 @@ const Title = styled(SectionTitle)`
 `;
 
 const LogoContainer = styled(FlexContainer)(
-    ({theme})=> `
-  background-color: ${ theme.colors.white};
-  border-radius: ${theme.radiusValue.radius};
-  color: ${ theme.colors.mainColor};
-  margin-bottom: 2rem;
-  width: 5rem;
-  height: 5rem;
-  .faDumbell {
-    font-size: ${ theme.fontSize.font_28};
-    transform: rotate(-20deg);
-  }
+  ({theme})=> `
+    background-color: ${ theme.colors.white};
+    border-radius: ${theme.radiusValue.radius};
+    color: ${ theme.colors.mainColor};
+    margin-bottom: 2rem;
+    width: 5rem;
+    height: 5rem;
+    .faDumbell {
+      font-size: ${ theme.fontSize.font_28};
+      transform: rotate(-20deg);
+    }
 `
 );
 
@@ -43,6 +43,14 @@ const SubTitle = styled.p(
 );
 
 const ButtonsContainer = styled(FlexContainer)`
+  width: 100%;
+  flex-direction: column;
+  margin: 5rem 0;
+  button {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `
 
 
