@@ -6,7 +6,6 @@ const InputWrapper = styled.div`
     & > p {
         margin-bottom: .5rem;
     }
-
     & > input { 
         position: relative;
         border: none;
@@ -17,7 +16,6 @@ const InputWrapper = styled.div`
         &:focus {
             border-color: ${({theme})=>theme.colors.mainColor};
         }
-      
     }
 
     &.input-error {
