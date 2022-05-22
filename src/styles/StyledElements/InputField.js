@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import errorLogo from "../../assets/close.png";
 
 const InputWrapper = styled.div`
     width: 100%;
@@ -7,6 +8,7 @@ const InputWrapper = styled.div`
     }
 
     & > input { 
+        position: relative;
         border: none;
         border-bottom: 2px solid ${({theme})=>theme.colors.gray};
         width: 100%;
@@ -15,7 +17,32 @@ const InputWrapper = styled.div`
         &:focus {
             border-color: ${({theme})=>theme.colors.mainColor};
         }
+      
     }
+
+    &.input-error {
+        position: relative;
+         & > input {
+            border-color: red;
+         }
+
+         & > p {
+             color: red;
+         }
+
+         &:after {
+                position: absolute;
+                content:'';
+                width: 20px;
+                height: 20px;
+                right: 0;
+                top: 50%;
+                background-image: url(${errorLogo});
+                background-size: contain;
+            }
+    }
+
+
 `
 
 export { InputWrapper } ;

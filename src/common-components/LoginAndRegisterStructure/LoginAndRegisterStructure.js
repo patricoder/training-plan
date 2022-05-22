@@ -16,7 +16,6 @@ const LoginAndRegisterStructure = ({formComponent, title}) => {
           <SubTitle>{title} first to continue</SubTitle>
         </TitleContainer>
         <FormContainer>{formComponent}</FormContainer>
-        <Button title={title} />
       </Container>
     </Section>
   );

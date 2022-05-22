@@ -1,8 +1,8 @@
 import { Btn } from "./Button.styles";
 
-const Button = ({ title, btnStyle }) => {
+const Button = ({ title, btnStyle, btnType, btnAction, btnDisabled }) => {
   return (
-    <Btn abc={btnStyle}>
+    <Btn type={btnType} abc={btnStyle} onClick={btnAction} disabled={btnDisabled}>
       {title}
     </Btn>
   );

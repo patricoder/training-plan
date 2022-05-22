@@ -4,6 +4,8 @@ import { InputWrapper } from "../../styles/StyledElements/InputField";
 const InputsWrapper = styled.div`
     width: 100%;
 `
+const Form = styled.form`
+`;
 const InputBox = styled(InputWrapper)`
     width: 100%;
     margin-bottom: 3rem;
@@ -18,4 +20,4 @@ const InputTitle = styled.p(
 
 const Input = styled.input``;
 
-export { InputBox, InputsWrapper, Input, InputTitle }
+export { InputBox, InputsWrapper, Input, InputTitle, Form }
