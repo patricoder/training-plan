@@ -31,6 +31,7 @@ const Title = styled(SectionTitle)`
 `;
 
 const FormContainer = styled(FlexContainer)`
+  width: 100%;
 `;
 
 const SubTitle = styled.p(
