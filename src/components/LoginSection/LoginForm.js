@@ -8,10 +8,18 @@ import {
   Form
 } from "../../styles/StyledElements/LoginAndRegister.styles";
 import { NavLink } from "react-router-dom";
+import { getAuth, signInWithEmailAndPassword  } from "firebase/auth";
+import { app } from "../../firebase/firebase";
+import { useNavigate } from "react-router-dom";
+
 const LoginForm = () => {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
+  const auth = getAuth(app);
+  const navigate = useNavigate();
+
     // error state if error set "input-error"
   const fromSubmit = (e) => {
     e.preventDefault();
@@ -19,8 +27,18 @@ const LoginForm = () => {
         setError(true);
     } else {
         setError(false);
-
-    }
+        signInWithEmailAndPassword (auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            console.log(user);
+            navigate('/protected/' + user.uid);
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+          });
+      }
   };
 
   return (
