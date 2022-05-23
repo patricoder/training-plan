@@ -3,8 +3,14 @@ import { InputWrapper } from "../../styles/StyledElements/InputField";
 
 const InputsWrapper = styled.div`
     width: 100%;
+    .nav-link {
+        p {
+            text-align: center;
+        }
+    }
 `
 const Form = styled.form`
+    margin-bottom: 3rem;
 `;
 const InputBox = styled(InputWrapper)`
     width: 100%;

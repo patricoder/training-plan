@@ -6,8 +6,8 @@ import {
   Input,
   InputTitle,
   Form
-} from "./LoginSection.styles";
-
+} from "../../styles/StyledElements/LoginAndRegister.styles";
+import { NavLink } from "react-router-dom";
 const LoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,6 +46,10 @@ const LoginForm = () => {
         </InputBox>
         <Button title="Login" />
       </Form>
+
+      <NavLink to="/register" className="nav-link">
+          <InputTitle>Dont have an account?</InputTitle>
+      </NavLink>
     </InputsWrapper>
   );
 };
