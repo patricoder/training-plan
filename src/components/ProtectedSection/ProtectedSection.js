@@ -19,11 +19,16 @@ const ProtectedSection = () => {
     }
 
     useEffect(()=>{
-
+      console.log('protected: ',currentUser);
+      if(currentUser === false) {
+       setTimeout(()=>{
+        navigate('/');
+       },5000)
+      }
     },[])
 
   return (
-    currentUser ? <div>LoggedIn <p>{currentUser.uid}</p><button onClick={logOut}>logout</button></div> : <div>User Nor loggedin:  {currentUser}</div>
+    currentUser ? <div>LoggedIn <p>{currentUser.uid}</p><button onClick={logOut}>logout</button></div> : <div>To access protected component u should log-in first.   {currentUser}</div>
   )
 }
 
