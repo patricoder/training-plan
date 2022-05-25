@@ -1,5 +1,5 @@
 An app is develop in mobile first approach.
-ReactJS, styled-components.
+ReactJS, styled-components, firebase/firestore.
 
 <a href="https://patricoder.github.io/training-plan">Click to see demo</a>
 
