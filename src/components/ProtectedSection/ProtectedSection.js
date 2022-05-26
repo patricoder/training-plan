@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { app } from "../../firebase/firebase";
 import { AuthContext } from "../../context/AuthContext";
 
+
 const ProtectedSection = () => {
     const { currentUser } = useContext(AuthContext)
 
