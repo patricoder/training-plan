@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import MyAccount from "./MyAccount";
 
+
 const ProtectedSection = () => {
     const { currentUser } = useContext(AuthContext)
 
