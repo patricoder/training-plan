@@ -1,6 +1,8 @@
 An app is develop in mobile first approach.
 ReactJS, styled-components.
 
+Register is not valid currently, if u want to check more, login using test@test.pl pass: 1234567
+
 <a href="https://patricoder.github.io/training-plan">Click to see demo</a>
 
 # Getting Started with Create React App

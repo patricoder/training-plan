@@ -1,4 +1,5 @@
 import { useContext, useEffect } from "react";
+import { Outlet } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import LoggedInUser from "../Logged-inUser/LoggedInUser";
 import NotLoggedInUser from "../NotLogged-inUser/NotLoggedInUser";
@@ -16,7 +17,7 @@ const ProtectedSection = () => {
       }
     },[])
 
-  return currentUser ? <LoggedInUser/> : <NotLoggedInUser/>
+  return currentUser ? <LoggedInUser outlet={<Outlet/>}/> : <NotLoggedInUser/>
 }
 
 export default ProtectedSection;

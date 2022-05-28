@@ -3,7 +3,7 @@ import GlobalStyle from "./styles/GlobalStyles";
 import { HelmetElement } from "./common-components";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
-import { WelcomePage, LoginSection, RegisterSection, ProtectedSection } from "./pages/index.js";
+import { WelcomePage, LoginSection, RegisterSection, ProtectedSection, AddNewPlan } from "./pages/index.js";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -18,16 +18,19 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <HelmetElement title={"My training app"} />
-          <AuthProvider>
-            <Routes>
-              <Route path="/" element={<WelcomePage />} />
-              <Route path="/login" element={<LoginSection />} />
-              <Route path="/register" element={<RegisterSection />} />
-              <Route path="/protected/:id" element={<ProtectedSection />}>
-                {/* nested routes here */}
-              </Route>
-            </Routes>
-          </AuthProvider>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<WelcomePage />} />
+            <Route path="/login" element={<LoginSection />} />
+            <Route path="/register" element={<RegisterSection />} />
+            <Route path="/protected/:id/" element={<ProtectedSection />}>
+              {/* nested routes here */}
+              <Route path="create" element={<AddNewPlan />} />
+              <Route path="user" element={ <>user component</>} />
+              <Route path="plans" element={ <>plans component</>}/>
+            </Route>
+          </Routes>
+        </AuthProvider>
       </ThemeProvider>
     </HashRouter>
   );
