@@ -23,7 +23,9 @@ const App = () => {
               <Route path="/" element={<WelcomePage />} />
               <Route path="/login" element={<LoginSection />} />
               <Route path="/register" element={<RegisterSection />} />
-              <Route path="/protected/:id" element={<ProtectedSection />} />
+              <Route path="/protected/:id" element={<ProtectedSection />}>
+                {/* nested routes here */}
+              </Route>
             </Routes>
           </AuthProvider>
       </ThemeProvider>

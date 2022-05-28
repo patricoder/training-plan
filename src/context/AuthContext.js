@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { app } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ const AuthContext = React.createContext();
 
 const AuthProvider = ({children}) => {
     const [currentUser, setCurrentUser] = useState(null);
-    let navigate = useNavigate()
+    let navigate = useNavigate();
 
     useEffect(()=>{
         const auth = getAuth(app);
@@ -27,9 +27,9 @@ const AuthProvider = ({children}) => {
 
     },[])
     return (
-        <AuthContext.Provider value={{currentUser}}>
-            {children}
-        </AuthContext.Provider>
+      <AuthContext.Provider value={{ currentUser, navigate}}>
+        {children}
+      </AuthContext.Provider>
     );
 }
 
