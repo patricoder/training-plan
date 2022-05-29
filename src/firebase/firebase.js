@@ -1,7 +1,7 @@
 
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore/lite';
-
+import { getDatabase } from "firebase/database";
 
 
 
@@ -17,7 +17,8 @@ const firebaseConfig = {
   
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const database = getDatabase(app);
+const firstore = getFirestore(app);
 
 
-export { app, db }
+export { app, firstore, database };

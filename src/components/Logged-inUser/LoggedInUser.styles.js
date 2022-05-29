@@ -12,8 +12,12 @@ const Container = styled(SectionContainer)`
   display: flex;
   flex-direction: column;
 `;
+const OutletContainer = styled.div`
+  height: 100%;
+`;
+
 const NavContainer = styled.div`
-  border-radius: 5px;
+  box-shadow: 1px -8px 50px 21px rgba(0,0,0,0.1);
   padding: 5px 0;
   background-color: white;
   margin-top: auto;
@@ -22,13 +26,14 @@ const NavContainer = styled.div`
   .nav-link {
     display: flex;
     flex-direction: column;
-    color: ${({theme})=>theme.colors.gray};
+    color: ${({ theme }) => theme.colors.gray};
     .nav-icon {
-      padding: .5rem
+      padding: 0.5rem;
     }
     &:hover {
-      .nav-icon, p {
-        color: ${({theme})=>theme.colors.mainColor}
+      .nav-icon,
+      p {
+        color: ${({ theme }) => theme.colors.mainColor};
       }
     }
   }
@@ -40,4 +45,10 @@ const NavTitle = styled.p(
   `
 );
 
-export { Section, Container, NavContainer, NavTitle };
+export {
+  Section,
+  Container,
+  OutletContainer,
+  NavContainer,
+  NavTitle,
+};

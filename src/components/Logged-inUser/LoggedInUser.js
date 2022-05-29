@@ -2,13 +2,24 @@ import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase/firebase";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Container, Section, NavContainer, NavTitle } from "./LoggedInUser.styles";
+import {
+  Container,
+  Section,
+  NavContainer,
+  NavTitle,
+  OutletContainer,
+} from "./LoggedInUser.styles";
 import { NavLink } from "react-router-dom";
-import { faUser, faCirclePlus, faBookOpen } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faCirclePlus,
+  faBookOpen,
+  faSignOut,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function LoggedInUser({outlet}) {
-  const { currentUser ,navigate } = useContext(AuthContext);
+export default function LoggedInUser({ outlet }) {
+  const { currentUser, navigate } = useContext(AuthContext);
   const auth = getAuth(app);
   const logOut = () => {
     signOut(auth)
@@ -24,9 +35,7 @@ export default function LoggedInUser({outlet}) {
   return (
     <Section>
       <Container>
-        LoggedInUser <button onClick={logOut}>logouyt</button>
-        {outlet}
-        {currentUser.uid}
+        <OutletContainer>{outlet}</OutletContainer>
         <NavContainer>
           <NavLink
             to={`/protected/${currentUser.uid}/create`}
@@ -49,6 +58,14 @@ export default function LoggedInUser({outlet}) {
             <FontAwesomeIcon icon={faBookOpen} className="nav-icon" />
             <NavTitle>My plans</NavTitle>
           </NavLink>
+          <div className="nav-link">
+            <FontAwesomeIcon
+              icon={faSignOut}
+              onClick={logOut}
+              className="nav-icon"
+            />
+            <NavTitle>sign-out</NavTitle>
+          </div>
         </NavContainer>
       </Container>
     </Section>

@@ -25,7 +25,7 @@ const App = () => {
             <Route path="/register" element={<RegisterSection />} />
             <Route path="/protected/:id/" element={<ProtectedSection />}>
               {/* nested routes here */}
-              <Route path="create" element={<AddNewPlan />} />
+              <Route path="create" element={<AddNewPlan />} exact/>
               <Route path="user" element={ <>user component</>} />
               <Route path="plans" element={ <>plans component</>}/>
             </Route>
@@ -36,4 +36,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App; 
