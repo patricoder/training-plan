@@ -6,9 +6,14 @@ import {
   InputContainer,
   InputTitle,
   Input,
+  Row,
+  Span,
+  Select,
+  Option
 } from "./AddNewPlan.styles";
 import { database } from "../../firebase/firebase";
 import { ref, child, get } from "firebase/database";
+import { v4 as uuidv4 } from 'uuid';
 
 class AddNewPlan extends Component {
   constructor(props) {
@@ -18,6 +23,7 @@ class AddNewPlan extends Component {
       allWorkouts: [],
       bodyParts: [],
       selectedBodyPart: null,
+      muscleGroup: null,
     };
   }
   componentDidMount() {
@@ -28,7 +34,7 @@ class AddNewPlan extends Component {
         if (snapshot.exists()) {
           this.setState({ bodyParts: snapshot.val() });
         }
-        console.log("log: ", this.state.bodyParts);
+        console.log("log: ", this.state.bodyParts.category);
       })
       .catch((error) => {
         console.error(error);
@@ -39,8 +45,9 @@ class AddNewPlan extends Component {
       .then((snapshot) => {
         if (snapshot.exists()) {
           snapshot.forEach((item) => {
-            this.state.allWorkouts.push(item);
+           this.setState({allWorkouts: snapshot.val()})
           });
+          console.log(snapshot.val())
         } else {
           console.log("No data avaiable");
         }
@@ -57,9 +64,16 @@ class AddNewPlan extends Component {
   render() {
     return (
       <Container>
-        {/* <Title>Create your plan</Title> */}
         <InputsContainer>
-          <InputContainer>
+          <Row>
+          <InputTitle>Your choices</InputTitle>
+          <InputContainer className="your-choises">
+            <p>Body part:   {this.state.selectedBodyPart ? this.state.selectedBodyPart : 'not selected'}</p>
+            <p>Muscle group:   {this.state.muscleGroup ? this.state.muscleGroup : 'not selected'}</p>
+        
+          </InputContainer>
+          </Row>
+          <Row>
             <InputTitle>1. Set plan name</InputTitle>
             <Input
               type="text"
@@ -68,31 +82,50 @@ class AddNewPlan extends Component {
                 this.setState({ planName: e.currentTarget.value })
               }
             />
-          </InputContainer>
-          <InputContainer>
-            <InputTitle>2. Choose body part</InputTitle>
-            {this.state.bodyParts.map((item) => {
-              return (
-                <label htmlFor={item.body_part}>
-                  <Input
-                    type="radio"
-                    key={item.id}
-                    value={item.body_part}
-                    id={item.body_part}
-                    name="body-part"
-                    onChange={(e) =>
-                      this.setState({ selectedBodyPart: e.currentTarget.value })
-                    }
-                  />
-                  {item.body_part}
-                </label>
-              );
-            })}
-            {this.state.selectedBodyPart}
-          </InputContainer>
-          <InputContainer>
-            <InputTitle>3. Choose body part</InputTitle>
-          </InputContainer>
+          </Row>
+          <Row>
+            <InputTitle>2. Select the part of the body </InputTitle>
+              <InputContainer className="select-container">
+                {this.state.bodyParts.map((item) => {
+                  return (
+                    <label htmlFor={item.body_part} className="label-inner" >
+                      <Input
+                        type="radio"
+                        className="input-radio"
+                        key={item.id}
+                        value={item.body_part}
+                        id={item.body_part}
+                        name="body-part"
+                        onChange={(e) =>
+                          this.setState({ selectedBodyPart: e.currentTarget.value })
+                        }
+                      />
+                      <Span className="custom-radio"></Span>
+                      {item.body_part}
+                    </label>
+                  );
+                })}
+                
+              </InputContainer>
+          </Row>
+          <Row>
+            <InputTitle>3. Choose the muscle group</InputTitle>
+            <InputContainer>
+                <Select value={this.state.muscleGroup} onChange={(e)=> this.setState({muscleGroup: e.currentTarget.value})}>
+                  <Option value={null}>select muscle group</Option>
+                  {this.state.selectedBodyPart ? this.state.bodyParts.map((item) => {
+                      if(item.body_part === this.state.selectedBodyPart) {
+                        console.log('log from muscle group: ',item)
+                        item.category.forEach(cat => {
+                          return (<Option value={cat} key={uuidv4()}> {cat} </Option>)
+                        })
+                      }
+                    }) : <Option value={null}>not selected</Option>
+
+                  }
+                </Select>
+            </InputContainer>
+          </Row>
         </InputsContainer>
       </Container>
     );
