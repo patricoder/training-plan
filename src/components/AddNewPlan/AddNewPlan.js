@@ -88,10 +88,10 @@ class AddNewPlan extends Component {
                 </label>
               );
             })}
-            {this.state.selectedBodyPart}
           </InputContainer>
           <InputContainer>
             <InputTitle>3. Choose body part</InputTitle>
+              
           </InputContainer>
         </InputsContainer>
       </Container>
