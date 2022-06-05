@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/training-plan/static/js/main.9468b60d.js",
+    "main.js": "/training-plan/static/js/main.1a4f015d.js",
     "static/media/close.png": "/training-plan/static/media/close.2fce6214b7c60c745aa6.png",
     "index.html": "/training-plan/index.html",
-    "main.9468b60d.js.map": "/training-plan/static/js/main.9468b60d.js.map"
+    "main.1a4f015d.js.map": "/training-plan/static/js/main.1a4f015d.js.map"
   },
   "entrypoints": [
-    "static/js/main.9468b60d.js"
+    "static/js/main.1a4f015d.js"
   ]
 }
