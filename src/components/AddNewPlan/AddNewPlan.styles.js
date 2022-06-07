@@ -38,8 +38,7 @@ const InputContainer = styled.div`
       text-transform: uppercase;
       .input-radio {
         position: absolute;
-        opacity: 0;
-        background-color: transparent;
+        opacity: 1;
         cursor: pointer;
       }
       .custom-radio {
@@ -56,14 +55,14 @@ const InputContainer = styled.div`
           content: "";
           width: 1.5rem;
           height: 1.5rem;
-          background-color: none;
+          background-color: ${({theme})=>theme.colors.white};
           border-radius: 50%;
           transform: translate(-50%, -50%);
           top:50%;
           left: 1.5rem;
         }
       }
-      .input-radio:checked + .custom-radio::after {
+      .input-radio:checked > .custom-radio::after {
         background-color: ${({theme})=>theme.colors.mainColor};
       }
     }

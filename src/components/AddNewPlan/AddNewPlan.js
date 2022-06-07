@@ -22,8 +22,9 @@ class AddNewPlan extends Component {
       planName: "",
       allWorkouts: [],
       bodyParts: [],
+      musclesGroup: [],
       selectedBodyPart: null,
-      muscleGroup: null,
+      selectedMuscleGroup: null,
     };
   }
   componentDidMount() {
@@ -33,8 +34,13 @@ class AddNewPlan extends Component {
       .then((snapshot) => {
         if (snapshot.exists()) {
           this.setState({ bodyParts: snapshot.val() });
+          snapshot.val().map(item => {
+            this.setState((prevState) => {
+              console.log(item)
+              return {muscleGroup: [...prevState.musclesGroup, item]}
+            })
+          })
         }
-        console.log("log: ", this.state.bodyParts.category);
       })
       .catch((error) => {
         console.error(error);
@@ -47,7 +53,6 @@ class AddNewPlan extends Component {
           snapshot.forEach((item) => {
            this.setState({allWorkouts: snapshot.val()})
           });
-          console.log(snapshot.val())
         } else {
           console.log("No data avaiable");
         }
@@ -111,19 +116,14 @@ class AddNewPlan extends Component {
           <Row>
             <InputTitle>3. Choose the muscle group</InputTitle>
             <InputContainer>
-                <Select value={this.state.muscleGroup} onChange={(e)=> this.setState({muscleGroup: e.currentTarget.value})}>
-                  <Option value={null}>select muscle group</Option>
-                  {this.state.selectedBodyPart ? this.state.bodyParts.map((item) => {
-                      if(item.body_part === this.state.selectedBodyPart) {
-                        console.log('log from muscle group: ',item)
-                        item.category.forEach(cat => {
-                          return (<Option value={cat} key={uuidv4()}> {cat} </Option>)
-                        })
-                      }
-                    }) : <Option value={null}>not selected</Option>
-
-                  }
-                </Select>
+               {/* <Select value={this.state.musclesGroup} onChange={(e)=> this.setState({muscleGroup: e.currentTarget.value})}>
+                  <Option value={null}>select muscle group</Option> */}
+                  {this.state.selectedBodyPart && (
+                    this.state.musclesGroup.map( item => {
+                      console.log(item)
+                    })
+                  )}
+                {/* </Select> */}
             </InputContainer>
           </Row>
         </InputsContainer>
