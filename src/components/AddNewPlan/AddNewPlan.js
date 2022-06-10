@@ -27,6 +27,13 @@ class AddNewPlan extends Component {
       selectedBodyPart: '',
       selectedMuscle: '',
       selectedWorkout: '',
+      workoutToPlan: {
+        id: 0,
+        name: '',
+        series: null,
+        repeats: null,
+      },
+      configuredPlan: []
     };
   }
   componentDidMount() {
@@ -38,8 +45,8 @@ class AddNewPlan extends Component {
           this.setState({ bodyParts: snapshot.val() });
           snapshot.val().map(item => {
             this.setState((prevState) => {
-              console.log(item)
-              return {muscleGroup: [...prevState.musclesGroup, item]}
+              // console.log(item)
+              return {muscleGroup: [...prevState.muscleGroup, item]}
             })
           })
         }
@@ -120,7 +127,7 @@ class AddNewPlan extends Component {
             <InputContainer className="select-container">
               {this.state.bodyParts.map((item) => {
                 return (
-                  <label htmlFor={item.body_part} className="label-inner">
+                  <label htmlFor={item.body_part} className="label-inner" key={uuidv4()}>
                     <Input
                       type="radio"
                       className="input-radio"
@@ -146,6 +153,9 @@ class AddNewPlan extends Component {
                 }
                 value={this.state.selectedMuscle}
               >
+                 <Option value=''>
+                  wybierz mięsień...     
+                 </Option>
                 {this.state.selectedBodyPart ? (
                   this.state.muscleGroup.map((cat) => {
                     return (
@@ -181,13 +191,23 @@ class AddNewPlan extends Component {
                     );
                     }
                   })
+
                 ) : (
                   <Option value={this.state.muscleGroup}>
                     part not selected
                   </Option>
                 )}
               </Select>
+
+             Series: <Input
+              type="number"
+              value={this.state.workoutToPlan.series}
+              onChange={e=>this.setState({workoutToPlan: {series: e.currentTarget.value}})}/>
             </InputContainer>
+          </Row>
+          <Row>
+          <InputTitle>5. Configured wokrkout</InputTitle>
+            
           </Row>
         </InputsContainer>
       </Container>

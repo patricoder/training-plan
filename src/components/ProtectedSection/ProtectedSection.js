@@ -9,7 +9,7 @@ const ProtectedSection = () => {
     const { currentUser, navigate } = useContext(AuthContext)
   
     useEffect(()=>{
-      console.log('protected: ',currentUser);
+      // console.log('protected: ',currentUser);
       if(currentUser === false) {
        setTimeout(()=>{
         navigate('/');

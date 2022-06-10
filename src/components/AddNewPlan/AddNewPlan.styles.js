@@ -62,7 +62,7 @@ const InputContainer = styled.div`
           left: 1.5rem;
         }
       }
-      .input-radio:checked > .custom-radio::after {
+      .input-radio:checked > .custom-radio:after {
         background-color: ${({theme})=>theme.colors.mainColor};
       }
     }
@@ -83,6 +83,7 @@ const Input = styled.input`
     border: none;
     border-bottom: .1rem solid white;
     color: white;
+    opacity: 0!important;
 `;
 
  
