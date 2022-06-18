@@ -14,26 +14,30 @@ import {
 import { database } from "../../firebase/firebase";
 import { ref, child, get } from "firebase/database";
 import { v4 as uuidv4 } from "uuid";
+import { Btn } from "../../common-components/ButtonElement/Button.styles";
 
 class AddNewPlan extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      planName: '',
+      planName: "",
       allWorkouts: [],
       bodyParts: [],
       bodyCategory: [],
       muscleGroup: [],
-      selectedBodyPart: '',
-      selectedMuscle: '',
-      selectedWorkout: '',
+      selectedBodyPart: "",
+      selectedMuscle: "",
+      selectedWorkout: "",
+      workoutSeries: '',
+      workoutRepeats: '',
       workoutToPlan: {
         id: 0,
-        name: '',
-        series: null,
-        repeats: null,
+        name: "",
+        series: "",
+        repeats: "",
+        bestScore: "",
       },
-      configuredPlan: []
+      configuredPlan: [],
     };
   }
   componentDidMount() {
@@ -43,12 +47,12 @@ class AddNewPlan extends Component {
       .then((snapshot) => {
         if (snapshot.exists()) {
           this.setState({ bodyParts: snapshot.val() });
-          snapshot.val().map(item => {
+          snapshot.val().map((item) => {
             this.setState((prevState) => {
-              // console.log(item)
-              return {muscleGroup: [...prevState.muscleGroup, item]}
-            })
-          })
+              // (item)
+              return { muscleGroup: [...prevState.muscleGroup, item] };
+            });
+          });
         }
         // console.log("log: ", this.state.bodyParts.category);
       })
@@ -77,39 +81,48 @@ class AddNewPlan extends Component {
 
   inputRadioHandler(e) {
     this.setState({ selectedBodyPart: e.currentTarget.value });
-    console.log("selected body part: ", this.state.selectedBodyPart);
-    this.state.bodyParts.map(item => {
-      if(item.body_part === e.currentTarget.value) {
-        this.setState({muscleGroup: item.category});
+    // console.log("selected body part: ", this.state.selectedBodyPart);
+    this.state.bodyParts.map((item) => {
+      if (item.body_part === e.currentTarget.value) {
+        this.setState({ muscleGroup: item.category });
       }
-    })
+    });
   }
+
+  addWorkout = () => {
+    this.setState((prevState) => ({
+      // workoutToPlan: {
+      //   ...prevState.workoutToPlan,
+      //   id: prevState.workoutToPlan.id + 1,
+      //   name: prevState.selectedWorkout,
+      //   repeats: this.state.workoutRepeats,
+      //   series: this.state.workoutSeries,
+      // },
+      configuredPlan: [
+        ...prevState.configuredPlan,
+        {
+          id: uuidv4(),
+          name: prevState.selectedWorkout,
+          repeats: this.state.workoutRepeats,
+          series: this.state.workoutSeries,
+          bestScore: "",
+        },
+      ],
+    }));
+  };
 
   render() {
     return (
       <Container>
         <InputsContainer>
           <Row>
-            <InputTitle>Your choices</InputTitle>
+            <InputTitle>Your plan</InputTitle>
             <InputContainer className="your-choises">
-              <p>
-                Body part:{" "}
-                {this.state.selectedBodyPart
-                  ? this.state.selectedBodyPart
-                  : "not selected"}
-              </p>
-              <p>
-                Muscle group:{" "}
-                {this.state.muscleGroup.length
-                  ? this.state.muscleGroup.join(", ")
-                  : "not selected"}
-              </p>
-              <p>
-                Selected muscle:{" "}
-                {this.state.selectedMuscle
-                  ? this.state.selectedMuscle
-                  : "not selected"}
-              </p>
+              {this.state.configuredPlan && 
+                this.state.configuredPlan.map(item => {
+                  return <p key={uuidv4()}>{item.name} - Series: {item.series} - Repeats: {item.repeats}</p>
+                })
+              }
             </InputContainer>
           </Row>
           <Row>
@@ -127,7 +140,11 @@ class AddNewPlan extends Component {
             <InputContainer className="select-container">
               {this.state.bodyParts.map((item) => {
                 return (
-                  <label htmlFor={item.body_part} className="label-inner" key={uuidv4()}>
+                  <label
+                    htmlFor={item.body_part}
+                    className="label-inner"
+                    key={uuidv4()}
+                  >
                     <Input
                       type="radio"
                       className="input-radio"
@@ -153,9 +170,7 @@ class AddNewPlan extends Component {
                 }
                 value={this.state.selectedMuscle}
               >
-                 <Option value=''>
-                  wybierz mięsień...     
-                 </Option>
+                <Option value="">wybierz mięsień...</Option>
                 {this.state.selectedBodyPart ? (
                   this.state.muscleGroup.map((cat) => {
                     return (
@@ -165,49 +180,56 @@ class AddNewPlan extends Component {
                     );
                   })
                 ) : (
-                  <Option value='not-selected'>
-                    part not selected
-                  </Option>
+                  <Option value="not-selected">part not selected</Option>
                 )}
               </Select>
             </InputContainer>
           </Row>
           <Row>
             <InputTitle>4. Select workout</InputTitle>
-            <InputContainer>
+            <InputContainer className="select-workout">
               <Select
-               value={this.state.selectedWorkout}
-               onChange={e=>this.setState({selectedWorkout: e.currentTarget.value})}
+                value={this.state.selectedWorkout}
+                onChange={(e) =>
+                  this.setState({ selectedWorkout: e.currentTarget.value })
+                }
               >
                 {this.state.selectedMuscle ? (
-                  this.state.allWorkouts.map(workout => {
-                     if(workout.category === this.state.selectedMuscle) {
-                    console.log(workout);
-                    return (
-                      <Option value={workout.workout_name}
-                      key={uuidv4()}>
-                        {workout.workout_name}
-                      </Option>
-                    );
+                  this.state.allWorkouts.map((workout) => {
+                    if (workout.category === this.state.selectedMuscle) {
+                      return (
+                        <Option value={workout.workout_name} key={uuidv4()}>
+                          {workout.workout_name}
+                        </Option>
+                      );
                     }
                   })
-
                 ) : (
                   <Option value={this.state.muscleGroup}>
                     part not selected
                   </Option>
                 )}
               </Select>
-
-             Series: <Input
-              type="number"
-              value={this.state.workoutToPlan.series}
-              onChange={e=>this.setState({workoutToPlan: {series: e.currentTarget.value}})}/>
+              Series:{" "}
+              <input
+                type="number"
+                value={this.state.workoutSeries}
+                onChange={(e) =>
+                  this.setState({ workoutSeries: e.currentTarget.value })
+                }
+              />
+              Repeats:{" "}
+              <input
+                type="number"
+                value={this.state.workoutRepeats}
+                onChange={(e) =>
+                  this.setState({ workoutRepeats: e.currentTarget.value })
+                }
+              />
             </InputContainer>
           </Row>
           <Row>
-          <InputTitle>5. Configured wokrkout</InputTitle>
-            
+            <Btn onClick={this.addWorkout}>Add</Btn>
           </Row>
         </InputsContainer>
       </Container>

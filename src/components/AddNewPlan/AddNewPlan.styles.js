@@ -24,21 +24,22 @@ const Option = styled.option``;
 const InputsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  
 `;
 
-const InputContainer = styled.div` 
+const InputContainer = styled.div`
   display: flex;
-    &.your-choises {  
-      flex-direction: column;
-    }
-    &.select-container {
-      justify-content: space-around;
+  &.your-choises {
+    flex-direction: column;
+  }
+  &.select-container {
+    justify-content: space-around;
     .label-inner {
       position: relative;
       text-transform: uppercase;
       .input-radio {
         position: absolute;
-        opacity: 1;
+        opacity: 0;
         cursor: pointer;
       }
       .custom-radio {
@@ -48,24 +49,27 @@ const InputContainer = styled.div`
         border-radius: 50%;
         transform: translate(-50%, -50%);
         top: 50%;
-        left:-2rem;
-        background-color: ${({theme})=>theme.colors.white};
+        left: -2rem;
+        background-color: ${({ theme }) => theme.colors.white};
         &:after {
           position: absolute;
           content: "";
           width: 1.5rem;
           height: 1.5rem;
-          background-color: ${({theme})=>theme.colors.white};
+          background-color: ${({ theme }) => theme.colors.white};
           border-radius: 50%;
           transform: translate(-50%, -50%);
-          top:50%;
+          top: 50%;
           left: 1.5rem;
         }
       }
-      .input-radio:checked > .custom-radio:after {
-        background-color: ${({theme})=>theme.colors.mainColor};
+      .input-radio:checked {
+        background-color: ${({ theme }) => theme.colors.grey};
       }
     }
+  }
+  &.select-workout {
+    flex-direction: column;
   }
 `;
 
@@ -83,7 +87,6 @@ const Input = styled.input`
     border: none;
     border-bottom: .1rem solid white;
     color: white;
-    opacity: 0!important;
 `;
 
  

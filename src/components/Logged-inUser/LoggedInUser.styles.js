@@ -13,7 +13,7 @@ const Container = styled(SectionContainer)`
   flex-direction: column;
 `;
 const OutletContainer = styled.div`
-  height: 100%;
+  /* height: 100%; */
 `;
 
 const NavContainer = styled.div`
