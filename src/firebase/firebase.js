@@ -18,7 +18,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-const firstore = getFirestore(app);
+const firestore = getFirestore(app);
 
 
-export { app, firstore, database };
+export { app, firestore, database }
+
