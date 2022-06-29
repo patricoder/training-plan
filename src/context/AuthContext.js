@@ -16,7 +16,7 @@ const AuthProvider = ({children}) => {
             if (user) {
                 const uid = user.uid;
                 setCurrentUser(user);
-                navigate('/protected/' + uid + '/create')
+                navigate('/protected/' + uid + '/plans')
                 // console.log("Auth state(true): ", user)
 
             } else {

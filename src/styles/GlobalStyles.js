@@ -9,12 +9,12 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
     }
     html, body {
-        height: 100%;
     }
     html {
         font-size: 62.5%;
     }
     body {
+        min-height: 100vh;
         font-size: 18px;
         font-family: 'Barlow', sans-serif;
         background-color: #63a4ff;

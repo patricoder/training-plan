@@ -3,7 +3,7 @@ import GlobalStyle from "./styles/GlobalStyles";
 import { HelmetElement } from "./common-components";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
-import { WelcomePage, LoginSection, RegisterSection, ProtectedSection, AddNewPlan } from "./pages/index.js";
+import { WelcomePage, LoginSection, RegisterSection, ProtectedSection, AddNewPlan, Plans } from "./pages/index.js";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
@@ -27,7 +27,7 @@ const App = () => {
               {/* nested routes here */}
               <Route path="create" element={<AddNewPlan />} exact/>
               <Route path="user" element={ <>user component</>} />
-              <Route path="plans" element={ <>plans component</>}/>
+              <Route path="plans" element={ <Plans />}/>
             </Route>
           </Routes>
         </AuthProvider>

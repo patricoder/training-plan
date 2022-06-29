@@ -9,6 +9,7 @@ import {
   Span,
   Select,
   Option,
+  Label,
 } from "./AddNewPlan.styles";
 import { database, firestore } from "../../firebase/firebase";
 import { ref, child, get } from "firebase/database";
@@ -16,8 +17,6 @@ import { v4 as uuidv4 } from "uuid";
 import { collection, addDoc } from "firebase/firestore";
 import { AuthContext } from "../../context/AuthContext";
 import { Button } from "../../common-components";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
-import { async } from "@firebase/util";
 
 const AddNewPlan = () => {
   const { currentUser } = useContext(AuthContext);
@@ -90,21 +89,28 @@ const AddNewPlan = () => {
         repeats: workoutRepeats,
         series: workoutSeries,
         bestScore: "",
+        lastScore: "",
       },
     ]);
+    setSelectedWorkout("");
+    setWorkoutSeries("");
+    setWorkoutRepeats("");
 
     console.log(currentUser.uid);
   };
 
-  const addWorkout = async() => {
+  const addWorkout = async () => {
     if (planName === "") return;
-// Add a new document in collection "cities"
-   await addDoc(collection(firestore, "plans"), {
-     id: currentUser.uid,
-     name: planName,
-     workouts: configuredPlan,
-   });
-
+    // Add a new document in collection "cities"
+    await addDoc(collection(firestore, "plans"), {
+      id: currentUser.uid,
+      name: planName,
+      workouts: configuredPlan,
+    });
+    setConfiguredPlan([]);
+    setPlanName("");
+    setSelectedMuscle("");
+    console.log("dodano plan");
   };
   return (
     <Container>
@@ -112,6 +118,7 @@ const AddNewPlan = () => {
         <Row>
           <InputTitle>Your plan</InputTitle>
           <InputContainer className="your-choises">
+            {selectedBodyPart}
             {configuredPlan &&
               configuredPlan.map((item) => {
                 return (
@@ -136,7 +143,7 @@ const AddNewPlan = () => {
           <InputContainer className="select-container">
             {bodyParts.map((item) => {
               return (
-                <label
+                <Label
                   htmlFor={item.body_part}
                   className="label-inner"
                   key={uuidv4()}
@@ -152,7 +159,7 @@ const AddNewPlan = () => {
                   />
                   <Span className="custom-radio"></Span>
                   {item.body_part}
-                </label>
+                </Label>
               );
             })}
           </InputContainer>
@@ -201,13 +208,13 @@ const AddNewPlan = () => {
               )}
             </Select>
             Series:{" "}
-            <input
+            <Input
               type="text"
               value={workoutSeries}
               onChange={(e) => setWorkoutSeries(e.currentTarget.value)}
             />
             Repeats:{" "}
-            <input
+            <Input
               type="text"
               value={workoutRepeats}
               onChange={(e) => setWorkoutRepeats(e.currentTarget.value)}
@@ -215,14 +222,16 @@ const AddNewPlan = () => {
           </InputContainer>
         </Row>
         <Row>
-          <Button btnAction={() => addExcercise()} title="Add excercise" />
-          <Button
-            btnAction={() => addWorkout()}
-            title="Add workout plan"
-            btnStyle="primary"
-          >
-            Add Workout
-          </Button>
+          <InputContainer className="buttons-container">
+            <Button btnAction={() => addExcercise()} title="Add excercise" />
+            <Button
+              btnAction={() => addWorkout()}
+              title="Add workout plan"
+              btnStyle="primary"
+            >
+              Add Workout
+            </Button>
+          </InputContainer>
         </Row>
       </InputsContainer>
     </Container>

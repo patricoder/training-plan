@@ -5,4 +5,5 @@ import ProtectedSection from "../components/ProtectedSection/ProtectedSection";
 import NotLoggedInUser from "../components/NotLogged-inUser/NotLoggedInUser";
 import LoggedInUser from "../components/Logged-inUser/LoggedInUser";
 import AddNewPlan from "../components/AddNewPlan/AddNewPlan";
-export { WelcomePage, LoginSection, RegisterSection, ProtectedSection, NotLoggedInUser, LoggedInUser, AddNewPlan  };
+import Plans from "../components/Plans/Plans";
+export { WelcomePage, LoginSection, RegisterSection, ProtectedSection, NotLoggedInUser, LoggedInUser, AddNewPlan, Plans  };

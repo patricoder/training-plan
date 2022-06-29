@@ -17,7 +17,7 @@ const Row = styled.div`
 `;
 
 const Span = styled.span``;
-
+const Label = styled.label``;
 const Select = styled.select``;
 const Option = styled.option``;
 
@@ -37,6 +37,7 @@ const InputContainer = styled.div`
     .label-inner {
       position: relative;
       text-transform: uppercase;
+      cursor: pointer;
       .input-radio {
         position: absolute;
         opacity: 0;
@@ -50,6 +51,7 @@ const InputContainer = styled.div`
         transform: translate(-50%, -50%);
         top: 50%;
         left: -2rem;
+        z-index: 99999;
         background-color: ${({ theme }) => theme.colors.white};
         &:after {
           position: absolute;
@@ -63,9 +65,14 @@ const InputContainer = styled.div`
           left: 1.5rem;
         }
       }
-      .input-radio:checked {
-        background-color: ${({ theme }) => theme.colors.grey};
+      .input-radio:checked + .custom-radio:after{
+        background-color: ${({ theme }) => theme.colors.mainColor};
       }
+    }
+  }
+  &.buttons-container {
+    button:first-child {
+      margin-right: 5px;
     }
   }
   &.select-workout {
@@ -91,4 +98,4 @@ const Input = styled.input`
 
  
 
-export { Container, Title, InputsContainer, InputContainer, InputTitle,Input, Row, Span, Select, Option };
+export { Container, Title, InputsContainer, InputContainer, InputTitle,Input, Row, Span,Label, Select, Option };
