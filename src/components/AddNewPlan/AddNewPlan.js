@@ -181,7 +181,7 @@ const AddNewPlan = () => {
                   );
                 })
               ) : (
-                <Option value="not-selected">part not selected</Option>
+                <Option value="not-selected">body part not selected</Option>
               )}
             </Select>
           </InputContainer>
@@ -194,17 +194,20 @@ const AddNewPlan = () => {
               onChange={(e) => setSelectedWorkout(e.currentTarget.value)}
             >
               {selectedMuscle ? (
-                allWorkouts.map((workout) => {
-                  if (workout.category === selectedMuscle) {
-                    return (
-                      <Option value={workout.workout_name} key={uuidv4()}>
-                        {workout.workout_name}
-                      </Option>
-                    );
-                  }
-                })
+                <>
+                  <Option value="">wybierz ćwiczenie...</Option>
+                  {allWorkouts.map((workout) => {
+                    if (workout.category === selectedMuscle) {
+                      return (
+                        <Option value={workout.workout_name} key={uuidv4()}>
+                          {workout.workout_name}
+                        </Option>
+                      );
+                    }
+                  })}{" "}
+                </>
               ) : (
-                <Option value={muscleGroup}>part not selected</Option>
+                <Option value={muscleGroup}>muscle group not selected</Option>
               )}
             </Select>
             Series:{" "}
